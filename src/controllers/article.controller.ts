@@ -8,6 +8,8 @@ import { Body, Controller, Delete, Get, Header, Headers, Param, Post, Put, Query
 import { ApiHeader, ApiHeaders, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
+import { Auth } from 'src/decorators/auth.decorator';
+import { RoleTypes } from 'src/decorators/role.enum';
 import { ArticleCreateDto } from 'src/dtos/article.create.dto';
 import { ArticleReadDto } from 'src/dtos/article.read.dto';
 import { ArticleUpdateDto } from 'src/dtos/article.update.dto';
@@ -17,8 +19,11 @@ import { Article } from 'src/models/article.entity';
 import { ArticleService } from 'src/services/article.service';
 import { Repository } from 'typeorm';
 
+
+@Auth()
 @Controller('articles') // ana route
 @ApiTags('ArticleEndPoint') // endpoint etiket ismi
+
 export class ArticleController {
 
 
@@ -38,6 +43,8 @@ export class ArticleController {
   }
 
   @Get(':id')
+  // sadece admin veya manager girebilir.
+  @Auth(RoleTypes.Admin, RoleTypes.Manager) // Authroize attribute aynısını tanımlamış olduk
   @ApiResponse({
     type: ArticleReadDto
   })
