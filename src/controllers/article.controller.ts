@@ -43,7 +43,7 @@ export class ArticleController {
   })
   async getArticleById(@Param('id') id: number, @Res() res: Response) {
 
-    const entity = await this.articleService.getByIdWithComments(Number(id));
+    const entity = await this.articleService.getById(Number(id));
 
     console.log('entity', entity);
 

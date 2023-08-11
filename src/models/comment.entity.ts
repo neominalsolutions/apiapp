@@ -1,5 +1,6 @@
 import { AutoMap } from "@automapper/classes";
-import { Column, Entity, JoinColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Article } from "./article.entity";
 
 @Entity()
 export class Comment {
@@ -12,6 +13,7 @@ export class Comment {
   @AutoMap()
   Text: string;
 
+  @ManyToOne(type => Article)
   @JoinColumn({ name: 'ArticleId' })
   @AutoMap()
   ArticleId: number;

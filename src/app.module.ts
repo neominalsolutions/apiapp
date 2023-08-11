@@ -20,6 +20,7 @@ import { classes } from '@automapper/classes';
                   password: 'admin',
                   database: 'ArticleDb',
                   entities: [Article, Comment],
+                  autoLoadEntities: true
                   // extra:{
                   //       ssl:false,
                   //       options:{

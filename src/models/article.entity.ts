@@ -3,6 +3,7 @@
 
 import { AutoMap } from "@automapper/classes";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Comment } from "./comment.entity";
 
 // TypeORM
 @Entity()

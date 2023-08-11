@@ -40,9 +40,9 @@ export class ArticleService {
   }
 
 
-  async getByIdWithComments(Id: number) {
+  getByIdWithComments(id: number) {
     // makaleyi commentleri ile birlikte getir.
-    return this.articleRepo.find({ where: { Id }, relations: { Comments: true } });
+    return this.articleRepo.findOne({ where: { Id:id }, relations: { Comments: true } });
   }
 
 
